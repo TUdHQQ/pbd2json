@@ -27,7 +27,7 @@ namespace pbd2json{
 						" -in=",
 						Uri.EscapeDataString(fullPath),
 						" -out=",
-						Uri.EscapeDataString(text2)
+						Uri.EscapeDataString(fullPath+".json")
 					}),
 					RedirectStandardError = true,
 					RedirectStandardOutput = true,
@@ -36,7 +36,9 @@ namespace pbd2json{
 				process.BeginOutputReadLine();
 				process.BeginErrorReadLine();
 				process.WaitForExit();
-				Console.WriteLine(File.ReadAllText(text2));
+				Console.WriteLine(File.ReadAllText(fullPath+".json"));
+				Directory.Delete(text,true);
+				//Console.WriteLine(text);
 			}
 			catch{
 			}
